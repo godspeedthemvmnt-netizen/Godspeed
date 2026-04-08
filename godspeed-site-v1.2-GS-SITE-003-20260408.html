@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Godspeed — The Movement</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --black:#000000;
+  --dark:#0A0A0A;
+  --mid:#111111;
+  --card:#161616;
+  --green:#0a6e1e;
+  --green-bright:#0a6e1e;
+  --green-light:#0a6e1e;
+  --green-dim:rgba(10,110,30,0.15);
+  --gold:#0a6e1e;
+  --gold-light:#0a6e1e;
+  --gold-dim:rgba(10,110,30,0.12);
+  --text:#E8E8E0;
+  --text-dim:#888;
+  --text-muted:#444;
+}
+html{scroll-behavior:smooth;}
+.outline-gold{
+  -webkit-text-stroke: 1px #0a6e1e;
+  color: transparent;
+}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.2rem 3rem;
+  background:rgba(0,0,0,0.95);
+  border-bottom:1px solid rgba(10,110,30,0.12);
+}
+.nav-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:1.8rem;
+  letter-spacing:0.12em;color:var(--green-light);text-decoration:none;
+}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{
+  text-decoration:none;color:var(--text-dim);
+  font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--green-light);}
+.nav-cta{
+  padding:0.5rem 1.4rem;background:var(--green-light);color:#fff;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+  text-decoration:none;transition:background 0.2s;
+}
+.nav-cta:hover{background:var(--green-light);}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:flex-start;
+  padding:0 3rem;position:relative;overflow:hidden;
+  background:var(--black);
+}
+.hero-grid-bg{
+  position:absolute;inset:0;
+}
+.hero-glow{
+  position:absolute;top:0;right:0;
+  width:55%;height:100%;
+  background:radial-gradient(ellipse 70% 70% at 70% 40%,rgba(10,110,30,0.12) 0%,transparent 70%);
+}
+.hero-glow2{
+  position:absolute;bottom:0;left:20%;
+  width:40%;height:50%;
+  background:radial-gradient(ellipse 60% 60% at 50% 80%,rgba(10,110,30,0.05) 0%,transparent 70%);
+}
+.hero-content{position:relative;z-index:1;max-width:800px;}
+.hero-eyebrow{
+  font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--green-light);margin-bottom:1.5rem;font-weight:600;
+  animation:fadeup 0.7s 0.1s both;
+}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,12vw,11rem);
+  line-height:0.88;letter-spacing:0.02em;
+  color:var(--text);margin-bottom:0.2rem;
+  animation:fadeup 0.8s 0.2s both;
+}
+.hero-title .g{color:var(--green-light);}
+.hero-title .gr{color:var(--green-light);}
+.hero-sub{
+  font-size:1.05rem;color:var(--text-dim);font-weight:300;
+  max-width:480px;margin:2rem 0 2.8rem;line-height:1.75;
+  animation:fadeup 0.8s 0.35s both;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:fadeup 0.8s 0.5s both;}
+.btn-gold{
+  padding:0.9rem 2.4rem;background:var(--green-light);color:#fff;
+  font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  text-decoration:none;transition:background 0.2s,transform 0.15s;display:inline-block;
+}
+.btn-gold:hover{background:var(--green-bright);transform:translateY(-1px);}
+.btn-green{
+  padding:0.9rem 2.4rem;border:1px solid var(--green-light);color:var(--green-light);
+  font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  text-decoration:none;transition:border-color 0.2s,color 0.2s;display:inline-block;
+}
+.btn-green:hover{border-color:var(--green-light);color:#0a6e1e;}
+.btn-ghost{
+  padding:0.9rem 2.4rem;border:1px solid rgba(10,110,30,0.3);color:var(--green-light);
+  font-size:0.75rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  text-decoration:none;transition:border-color 0.2s;display:inline-block;
+}
+.btn-ghost:hover{border-color:var(--green-light);}
+
+/* SOCIALS BAR */
+.socials-bar{
+  background:var(--dark);border-top:1px solid var(--green-dim);border-bottom:1px solid var(--green-dim);
+  padding:1rem 3rem;display:flex;align-items:center;gap:2rem;justify-content:center;
+}
+.socials-label{font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);font-weight:600;}
+.socials-links{display:flex;gap:1.5rem;}
+.social-link{
+  display:flex;align-items:center;gap:0.5rem;text-decoration:none;
+  color:var(--text-dim);font-size:0.78rem;letter-spacing:0.1em;font-weight:600;
+  text-transform:uppercase;transition:color 0.2s;padding:0.3rem 0.8rem;
+  border:1px solid transparent;
+}
+.social-link:hover{color:var(--green-light);border-color:rgba(10,110,30,0.2);}
+.social-icon{width:16px;height:16px;fill:currentColor;flex-shrink:0;} .ig-link{color:#E1306C;} .yt-link{color:#FF0000;} .tt-link{color:#69C9D0;}
+
+/* SECTION SHARED */
+.section-label{
+  font-size:0.68rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--green-light);font-weight:600;margin-bottom:1rem;
+}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,5vw,4rem);line-height:1;color:var(--text);
+}
+
+/* MANIFESTO */
+.manifesto{
+  padding:7rem 3rem;display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;max-width:1200px;margin:0 auto;
+
+  border:0.3px solid rgba(10,110,30,0.2);}
+.manifesto-body{
+  font-size:1rem;color:var(--text-dim);line-height:1.9;font-weight:300;
+  max-width:440px;margin-top:1.8rem;
+}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.stat-block{
+  padding:1.8rem;background:var(--card);
+  border:1px solid rgba(10,110,30,0.08);
+  border-left:2px solid var(--green-light);
+}
+.stat-number{
+  font-family:'Bebas Neue',sans-serif;font-size:3rem;
+  color:var(--green-light);line-height:1;margin-bottom:0.3rem;
+}
+.stat-desc{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;font-weight:600;}
+
+/* APP SECTION */
+.app-section{
+  padding:7rem 3rem;background:var(--dark);
+  border-top:1px solid rgba(10,110,30,0.15);
+  border-bottom:1px solid rgba(10,110,30,0.15);
+
+  border:0.3px solid rgba(10,110,30,0.2);}
+.app-inner{max-width:1200px;margin:0 auto;}
+.app-header{text-align:center;margin-bottom:4rem;}
+.app-header .section-title{margin-top:0.5rem;}
+.app-header p{
+  font-size:1rem;color:var(--text-dim);max-width:520px;
+  margin:1.5rem auto 0;line-height:1.75;font-weight:300;
+}
+
+/* APP TABS */
+.app-tabs{display:flex;justify-content:center;gap:0;margin-bottom:3rem;border:1px solid rgba(10,110,30,0.15);}
+.tab-btn{
+  padding:0.75rem 2rem;background:transparent;border:none;cursor:pointer;
+  font-family:'Barlow',sans-serif;font-size:0.72rem;font-weight:700;
+  letter-spacing:0.18em;text-transform:uppercase;color:var(--text-muted);
+  transition:background 0.2s,color 0.2s;border-right:1px solid rgba(10,110,30,0.15);
+}
+.tab-btn:last-child{border-right:none;}
+.tab-btn.active{background:var(--green-light);color:#fff;}
+.tab-btn:not(.active):hover{color:var(--green-light);background:var(--green-dim);}
+
+/* APP PANELS */
+.app-panel{display:none;}
+.app-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+
+/* PHONE MOCKUP */
+.phone-wrap{display:flex;justify-content:center;}
+.phone{
+  width:260px;background:var(--mid);
+  border:1px solid rgba(10,110,30,0.2);
+  border-radius:2rem;overflow:hidden;
+  box-shadow:0 0 0 8px #0a0a0a,0 0 0 9px rgba(10,110,30,0.1);
+}
+.phone-status{
+  background:var(--black);padding:0.7rem 1.2rem 0.4rem;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:0.65rem;color:var(--text-muted);letter-spacing:0.05em;
+}
+.phone-notch{width:80px;height:18px;background:var(--black);border-radius:0 0 10px 10px;margin:0 auto;}
+.phone-screen{padding:1.2rem;min-height:420px;background:var(--mid);}
+.phone-logo{
+  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:0.12em;
+  color:var(--green-light);margin-bottom:1.2rem;text-align:center;
+}
+
+/* SHOP SCREEN */
+.shop-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;}
+.shop-item{background:var(--card);padding:0.8rem;border:1px solid rgba(10,110,30,0.06);}
+.shop-thumb{
+  width:100%;aspect-ratio:1;background:var(--black);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:rgba(10,110,30,0.2);
+  margin-bottom:0.5rem;
+}
+.shop-name{font-size:0.65rem;font-weight:600;color:var(--text);letter-spacing:0.05em;text-transform:uppercase;}
+.shop-price{font-size:0.7rem;color:var(--green-light);font-family:'Bebas Neue',sans-serif;}
+
+/* HABIT SCREEN */
+.habit-date{font-size:0.65rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem;}
+.habit-item{
+  display:flex;align-items:center;gap:0.7rem;padding:0.6rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.habit-check{
+  width:18px;height:18px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:0.65rem;
+}
+.habit-check.done{background:var(--green-light);color:#fff;}
+.habit-check.todo{border:1px solid var(--text-muted);}
+.habit-name{font-size:0.75rem;color:var(--text);font-weight:400;}
+.habit-streak{font-size:0.6rem;color:var(--green-light);margin-left:auto;font-weight:600;}
+.habit-score{
+  margin-top:1rem;padding:0.8rem;background:var(--black);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.habit-score-label{font-size:0.65rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;}
+.habit-score-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--green-light);}
+
+/* COMMUNITY SCREEN */
+.feed-post{
+  padding:0.7rem 0;border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.feed-avatar{
+  width:24px;height:24px;border-radius:50%;background:var(--green-dim);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.6rem;color:var(--green-light);font-weight:700;flex-shrink:0;
+}
+.feed-top{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.35rem;}
+.feed-user{font-size:0.68rem;font-weight:700;color:var(--text);letter-spacing:0.04em;}
+.feed-time{font-size:0.6rem;color:var(--text-muted);}
+.feed-text{font-size:0.7rem;color:var(--text-dim);line-height:1.5;}
+.feed-likes{font-size:0.6rem;color:var(--green-light);margin-top:0.3rem;}
+
+/* REWARDS SCREEN */
+.points-card{
+  background:var(--black);border:1px solid rgba(10,110,30,0.2);
+  padding:1rem;border-radius:0.5rem;margin-bottom:0.8rem;text-align:center;
+}
+.points-val{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--green-light);}
+.points-label{font-size:0.6rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;}
+.reward-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.5rem 0;border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.reward-name{font-size:0.7rem;color:var(--text);}
+.reward-cost{
+  font-size:0.65rem;color:var(--green-light);font-weight:700;
+  padding:0.2rem 0.5rem;border:1px solid rgba(10,110,30,0.3);
+}
+
+/* PANEL TEXT */
+.panel-text .section-label{margin-bottom:0.8rem;}
+.panel-text .section-title{margin-bottom:1.5rem;}
+.panel-text p{font-size:0.95rem;color:var(--text-dim);line-height:1.85;font-weight:300;margin-bottom:1rem;}
+.feature-list{list-style:none;margin:1.5rem 0 2rem;}
+.feature-list li{
+  font-size:0.85rem;color:var(--text-dim);padding:0.5rem 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  display:flex;align-items:center;gap:0.8rem;
+}
+.feature-list li::before{
+  content:'';width:6px;height:6px;background:var(--green-light);
+  border-radius:50%;flex-shrink:0;
+}
+
+/* COLLECTION */
+.collection{padding:7rem 3rem;
+  border:0.3px solid rgba(10,110,30,0.2);}
+.collection-inner{max-width:1200px;margin:0 auto;}
+.collection-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:3rem;
+}
+.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.product-card{background:#1a1a1a;border:1px solid #2a2a2a;position:relative;overflow:hidden;cursor:pointer;transition:transform 0.3s,border-color 0.3s;}
+.product-card:hover{transform:translateY(-4px);border-color:var(--green-light);}
+.product-card:hover .product-overlay{opacity:1;}
+.product-img-placeholder{
+  width:100%;aspect-ratio:3/4;background:#0d0d0d;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:#2a2a2a;
+  border-bottom:1px solid #222;
+}
+.product-overlay{
+  position:absolute;inset:0;background:rgba(0,0,0,0.6);
+  opacity:0;transition:opacity 0.3s;display:flex;align-items:center;justify-content:center;
+}
+.product-overlay-btn{
+  padding:0.7rem 1.6rem;background:var(--green-light);color:#fff;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;border:none;cursor:pointer;
+}
+.product-overlay-btn:hover{background:var(--green-bright);}
+.product-info{padding:1rem;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #222;}
+.product-name{font-size:0.82rem;font-weight:700;color:#e8e8e0;letter-spacing:0.06em;text-transform:uppercase;}
+.product-type{font-size:0.68rem;color:#555;margin-top:0.2rem;}
+.product-price{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--green-light);}
+
+/* SOCIALS SECTION */
+.socials-section{padding:6rem 3rem;background:var(--dark);border-top:1px solid rgba(10,110,30,0.12);
+  border:0.3px solid rgba(10,110,30,0.2);}
+.socials-inner{max-width:1000px;margin:0 auto;text-align:center;}
+.socials-inner .section-title{margin:0.5rem 0 1rem;}
+.socials-inner p{font-size:0.95rem;color:var(--text-dim);margin-bottom:3rem;font-weight:300;}
+.socials-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.social-card{
+  padding:2.5rem 2rem;background:var(--card);
+  border:1px solid rgba(10,110,30,0.08);
+  text-decoration:none;transition:border-color 0.2s,transform 0.2s;
+  display:block;
+}
+.social-card:hover{border-color:rgba(10,110,30,0.3);transform:translateY(-3px);}
+.social-card-icon{width:36px;height:36px;margin:0 auto 1rem;display:block;}
+.social-card-platform{
+  font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--green-light);font-weight:700;margin-bottom:0.4rem;
+}
+.social-card-handle{
+  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;
+  letter-spacing:0.05em;color:var(--text);margin-bottom:0.8rem;
+}
+.social-card-desc{font-size:0.78rem;color:var(--text-muted);line-height:1.6;}
+
+/* ETHOS */
+.ethos{padding:8rem 3rem;text-align:center;max-width:900px;margin:0 auto;
+  border:0.3px solid rgba(10,110,30,0.2);}
+.gold-line{width:1px;height:60px;background:var(--green-light);margin:0 auto 3rem;}
+.ethos-quote{
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);
+  line-height:1.05;color:var(--text);margin-bottom:2rem;
+}
+.ethos-quote .g{color:var(--green-light);}
+.ethos-quote .gr{color:var(--green-light);}
+.ethos-body{font-size:1rem;color:var(--text-dim);line-height:1.9;font-weight:300;margin-bottom:3rem;}
+
+/* FOOTER */
+footer{
+  padding:2.5rem 3rem;
+  border-top:1px solid rgba(10,110,30,0.1);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;
+  background:var(--dark);
+}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.12em;color:var(--green-light);}
+.footer-socials{display:flex;gap:1.5rem;}
+.footer-social{
+  font-size:0.68rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;
+  text-decoration:none;transition:color 0.2s;
+}
+.footer-social:hover{color:var(--green-light);}
+.footer-copy{font-size:0.68rem;color:var(--text-muted);letter-spacing:0.05em;}
+
+.app-embed-wrap{
+  display:grid;grid-template-columns:auto 1fr;gap:5rem;
+  align-items:center;max-width:1000px;margin:0 auto;
+}
+.phone-frame{
+  width:320px;flex-shrink:0;
+  background:#111;
+  border-radius:3rem;
+  border:2px solid #2a2a2a;
+  box-shadow:0 0 0 6px #0a0a0a, 0 0 0 7px #1a1a1a;
+  overflow:hidden;
+  position:relative;
+}
+.phone-frame-top{
+  background:#0a0a0a;padding:1rem 1rem 0.5rem;
+  display:flex;justify-content:center;
+}
+.phone-notch-bar{
+  width:90px;height:20px;background:#0a0a0a;
+  border-radius:0 0 12px 12px;border:1.5px solid #1a1a1a;border-top:none;
+}
+.phone-screen-wrap{
+  width:100%;height:617px;overflow:hidden;background:#060606;position:relative;
+}
+
+.phone-frame-bottom{
+  background:#0a0a0a;padding:0.6rem 1rem 1rem;
+  display:flex;justify-content:center;
+}
+.phone-home-bar{
+  width:100px;height:4px;background:#2a2a2a;border-radius:2px;
+}
+@keyframes fadeup{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo"><img src="GODSPEED.png" alt="Godspeed" style="height:48px;width:auto;display:block;"/></a>
+  <ul class="nav-links">
+    <li><a href="#manifesto">Manifesto</a></li>
+    <li><a href="#app">App</a></li>
+    <li><a href="https://www.etsy.com/shop/GodspeedTheMvmnt">Shop</a></li>
+    <li><a href="#community">Community</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-content">
+    <img src="GODSPEED.png" alt="Godspeed" style="width:220px;margin-bottom:1.5rem;display:block;"/>
+    <p class="hero-eyebrow">Move. Inspire. Uplift.</p>
+    <h1 class="hero-title outline-gold">
+      GOD<span class="g">SPEED</span>
+    </h1>
+    <p class="hero-sub">
+      Built for those who act. Every piece, every post, every habit — a declaration that your story is written in what you do, not what you intend.
+    </p>
+    <div class="hero-btns">
+      <a href="https://www.etsy.com/shop/GodspeedTheMvmnt" class="btn-gold">Shop Collection</a>
+      <a href="#app" class="btn-green">Get the App</a>
+      <a href="#manifesto" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIALS BAR -->
+<div class="socials-bar">
+  <span class="socials-label">Follow</span>
+  <div class="socials-links">
+    <a href="https://instagram.com/godspeedthemvmnt" target="_blank" class="social-link ig-link">
+      <svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      Instagram
+    </a>
+    <a href="https://youtube.com/@godspeedthemvmnt" target="_blank" class="social-link yt-link">
+      <svg class="social-icon" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+      YouTube
+    </a>
+    <a href="https://tiktok.com/@godspeedthemvmnt" target="_blank" class="social-link tt-link">
+      <svg class="social-icon" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+      TikTok
+    </a>
+      <a href="https://ko-fi.com/godspeedmichael" target="_blank" class="social-link">
+      <svg class="social-icon" viewBox="0 0 24 24" style="fill:#FF5E5B;"><path d="M23.881 8.948c-.773-4.085-4.859-4.591-4.859-4.591H.723c-.604 0-.679.798-.679.798s-.082 9.51.073 11.418c.153 1.857 1.546 1.887 1.546 1.887h6.738c0 0 .453 1.791 1.354 2.597.901.806 2.354.537 2.354.537s3.736 0 5.426-.001c1.69 0 2.437-1.29 2.618-1.852.18-.562.18-1.108.18-1.108s2.527-.105 3.295-2.763c.692-2.441.053-6.922.053-6.922zM19.108 13.96c-.491 1.808-1.305 1.954-1.305 1.954h-1.49V9.423h1.541c0 0 1.745.395 1.254 4.537zm-5.44 1.839c0 0-.148.755-.862.755-.713 0-.861-.755-.861-.755V9.423h1.723v6.376z"/></svg>
+      Support
+    </a>
+  </div>
+    <a href="https://www.etsy.com/shop/GodspeedTheMvmnt" target="_blank" class="social-link">
+      <svg class="social-icon" viewBox="0 0 24 24" style="fill:#F56400;"><path d="M10.058 13.993H7.645l-.367 1.738c-.175.826-.35 1.224-.578 1.477-.298.282-.718.423-1.28.423-.614 0-1.052-.17-1.315-.508-.193-.253-.29-.62-.29-1.1 0-.24.02-.48.058-.724l1.824-9.688c.156-.863.4-1.447.733-1.752.332-.306.887-.46 1.664-.46h7.59c.52 0 .887.093 1.1.276.213.184.32.46.32.826 0 .306-.078.56-.232.764-.155.205-.378.337-.67.397l-5.354.826-.31 1.794h4.565c.49 0 .84.088 1.05.265.21.176.315.44.315.79 0 .296-.082.543-.247.742-.165.198-.4.326-.705.382l-4.66.733zm3.553 5.638c0 .52-.155.934-.463 1.243-.31.31-.724.463-1.243.463-.52 0-.934-.155-1.243-.463-.31-.31-.463-.724-.463-1.243 0-.52.155-.934.463-1.243.31-.31.724-.463 1.243-.463.52 0 .934.155 1.243.463.308.309.463.723.463 1.243z"/></svg>
+      Shop
+    </a>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="manifesto">
+  <div>
+    <p class="section-label">Why We Exist</p>
+    <h2 class="section-title">Action is the only sermon</h2>
+    <p class="manifesto-body">
+      We don't talk about what we're going to do. We move — and we wear it. Godspeed exists to remind you that your story is written in what you do, not what you intend. Every garment is a challenge: will you rise today?
+    </p>
+  </div>
+  <div class="stat-grid">
+    <div class="stat-block">
+      <div class="stat-number">100%</div>
+      <div class="stat-desc">Purpose-driven</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">0</div>
+      <div class="stat-desc">Excuses accepted</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">1</div>
+      <div class="stat-desc">Step at a time</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-number">∞</div>
+      <div class="stat-desc">Potential unlocked</div>
+    </div>
+  </div>
+</section>
+
+<!-- APP SECTION -->
+<section id="app" style="padding:7rem 3rem;background:#060606;border:0.3px solid rgba(10,110,30,0.2);background-image:linear-gradient(rgba(10,110,30,0.07) 0.3px,transparent 0.3px),linear-gradient(90deg,rgba(10,110,30,0.07) 0.3px,transparent 0.3px);background-size:60px 60px;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;">
+    <div>
+      <p class="section-label">The Godspeed App</p>
+      <h2 class="section-title" style="margin-bottom:1.5rem;">Your ecosystem.<br>One place.</h2>
+      <p style="font-size:1rem;color:var(--text-dim);line-height:1.9;font-weight:300;margin-bottom:2rem;">Habit tracker, community, shop, and rewards — all in one place. Built for those who move with purpose.</p>
+      <ul style="list-style:none;margin-bottom:2.5rem;">
+        <li style="font-size:0.85rem;color:var(--text-dim);padding:0.5rem 0;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:0.8rem;"><span style="width:6px;height:6px;background:var(--green-light);border-radius:50%;display:inline-block;flex-shrink:0;"></span>Daily habit tracker with streaks</li>
+        <li style="font-size:0.85rem;color:var(--text-dim);padding:0.5rem 0;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:0.8rem;"><span style="width:6px;height:6px;background:var(--green-light);border-radius:50%;display:inline-block;flex-shrink:0;"></span>Shop merch directly in-app</li>
+        <li style="font-size:0.85rem;color:var(--text-dim);padding:0.5rem 0;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:0.8rem;"><span style="width:6px;height:6px;background:var(--green-light);border-radius:50%;display:inline-block;flex-shrink:0;"></span>Community feed</li>
+        <li style="font-size:0.85rem;color:var(--text-dim);padding:0.5rem 0;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:0.8rem;"><span style="width:6px;height:6px;background:var(--green-light);border-radius:50%;display:inline-block;flex-shrink:0;"></span>Rewards and points system</li>
+        <li style="font-size:0.85rem;color:var(--text-dim);padding:0.5rem 0;display:flex;align-items:center;gap:0.8rem;"><span style="width:6px;height:6px;background:var(--green-light);border-radius:50%;display:inline-block;flex-shrink:0;"></span>Reset room, cold plunge timer, journal</li>
+      </ul>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="godspeedfinal.html" target="_blank" class="btn-gold">Launch the App</a>
+        <a href="#" class="btn-ghost">App Store — Coming Soon</a>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;">
+      <div style="width:260px;background:#111;border-radius:2.5rem;border:1.5px solid #222;box-shadow:0 0 0 6px #0a0a0a,0 0 0 7px #1a1a1a;overflow:hidden;">
+        <div style="background:#0a0a0a;padding:1rem 1rem 0.4rem;display:flex;justify-content:center;">
+          <div style="width:80px;height:20px;background:#0a0a0a;border-radius:0 0 12px 12px;border:1.5px solid #1a1a1a;border-top:none;"></div>
+        </div>
+        <div style="background:#060606;padding:2rem 1.5rem;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:0.12em;color:var(--green-light);">GODSPEED</div>
+          <div style="font-size:0.65rem;letter-spacing:0.3em;color:#444;text-transform:uppercase;">Discipline over everything</div>
+          <div style="width:40px;height:1px;background:var(--green-light);opacity:0.3;margin:0.5rem 0;"></div>
+          <div style="display:flex;flex-direction:column;gap:0.5rem;width:100%;">
+            <div style="background:#111;padding:0.7rem 1rem;border:1px solid #1a1a1a;font-size:0.7rem;color:#444;letter-spacing:0.1em;">Username</div>
+            <div style="background:#111;padding:0.7rem 1rem;border:1px solid #1a1a1a;font-size:0.7rem;color:#444;letter-spacing:0.1em;">Password</div>
+            <div style="background:var(--green-light);padding:0.7rem 1rem;font-size:0.7rem;color:#000;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;text-align:center;margin-top:0.3rem;">Enter</div>
+          </div>
+        </div>
+        <div style="background:#0a0a0a;padding:0.6rem 1rem 1rem;display:flex;justify-content:center;">
+          <div style="width:80px;height:4px;background:#1a1a1a;border-radius:2px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section class="collection" id="collection">
+  <div class="collection-inner">
+    <div class="collection-header">
+      <div>
+        <p class="section-label">Latest Drop</p>
+        <h2 class="section-title">The Movement Collection</h2>
+      </div>
+      <a href="#" class="btn-ghost">View All</a>
+    </div>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-img-placeholder">GSM</div>
+        <div class="product-overlay"><button class="product-overlay-btn">Quick View</button></div>
+        <div class="product-info">
+          <div><div class="product-name">Origin Tee</div><div class="product-type">Heavyweight Cotton</div></div>
+          <div class="product-price">$42</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-placeholder">GSM</div>
+        <div class="product-overlay"><button class="product-overlay-btn">Quick View</button></div>
+        <div class="product-info">
+          <div><div class="product-name">Momentum Hoodie</div><div class="product-type">French Terry</div></div>
+          <div class="product-price">$88</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-img-placeholder">GSM</div>
+        <div class="product-overlay"><button class="product-overlay-btn">Quick View</button></div>
+        <div class="product-info">
+          <div><div class="product-name">Discipline Cap</div><div class="product-type">6-Panel Structured</div></div>
+          <div class="product-price">$36</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY / SOCIALS SECTION -->
+<section class="socials-section" id="community">
+  <div class="socials-inner">
+    <p class="section-label">Find Us Everywhere</p>
+    <h2 class="section-title">One brand, every platform</h2>
+    <p>Follow the movement on Instagram, YouTube, and TikTok. Same handle everywhere — so you never lose us.</p>
+    <div class="socials-cards">
+      <a href="https://instagram.com/godspeedthemvmnt" target="_blank" class="social-card">
+        <svg class="social-card-icon" style="fill:#E1306C" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <div class="social-card-platform">Instagram</div>
+        <div class="social-card-handle">@godspeedthemvmnt</div>
+        <div class="social-card-desc">Daily drops, behind the scenes, community highlights</div>
+      </a>
+      <a href="https://youtube.com/@godspeedthemvmnt" target="_blank" class="social-card">
+        <svg class="social-card-icon" style="fill:#FF0000" viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+        <div class="social-card-platform">YouTube</div>
+        <div class="social-card-handle">@godspeedthemvmnt</div>
+        <div class="social-card-desc">Long-form content, vlogs, The Art of Suffering series</div>
+      </a>
+      <a href="https://tiktok.com/@godspeedthemvmnt" target="_blank" class="social-card">
+        <svg class="social-card-icon" style="fill:#69C9D0" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        <div class="social-card-platform">TikTok</div>
+        <div class="social-card-handle">@godspeedthemvmnt</div>
+        <div class="social-card-desc">Short-form motivation, movement, lifestyle clips</div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <p style="font-size:0.78rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;">Support the movement</p>
+      <a href="https://ko-fi.com/godspeedmichael" target="_blank" class="btn-gold" style="display:inline-block;">Buy us a coffee on Ko-fi</a>
+    </div>
+  </div>
+</section>
+
+<!-- ETHOS -->
+<section class="ethos">
+  <div class="gold-line"></div>
+  <h2 class="ethos-quote">
+    You don't find the path.<br>
+    <span class="g">You become</span> <span class="gr">it.</span>
+  </h2>
+  <p class="ethos-body">
+    Godspeed is more than merch, more than an app, more than a following. It's a reminder worn close to the skin — that every day is a choice to move forward, uplift others by example, and let your actions speak louder than any promise.
+  </p>
+  <a href="https://www.etsy.com/shop/GodspeedTheMvmnt" class="btn-gold">Start Moving</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo"><img src="GODSPEED.png" alt="Godspeed" style="height:40px;width:auto;display:block;"/></div>
+  <div class="footer-socials">
+    <a href="https://instagram.com/godspeedthemvmnt" target="_blank" class="footer-social">Instagram</a>
+    <a href="https://youtube.com/@godspeedthemvmnt" target="_blank" class="footer-social">YouTube</a>
+    <a href="https://tiktok.com/@godspeedthemvmnt" target="_blank" class="footer-social">TikTok</a>
+  </div>
+  <div style="display:flex;gap:1.5rem;margin-bottom:0.8rem;justify-content:center;"><a href="legal.html" style="font-size:0.68rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4CAF50'" onmouseout="this.style.color=''">Privacy Policy</a><a href="legal.html#terms" style="font-size:0.68rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4CAF50'" onmouseout="this.style.color=''">Terms of Service</a><a href="mailto:godspeedthemvmnt@gmail.com" style="font-size:0.68rem;color:var(--text-muted);letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='#4CAF50'" onmouseout="this.style.color=''">Contact</a></div><p class="footer-copy">© 2026 Godspeed The Movement. All rights reserved.</p>
+</footer>
+
+
+
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.app-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
